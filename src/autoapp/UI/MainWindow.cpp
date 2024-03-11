@@ -1260,23 +1260,23 @@ void f1x::openauto::autoapp::ui::MainWindow::on_mp3List_itemClicked(QListWidgetI
 
 void f1x::openauto::autoapp::ui::MainWindow::metaDataChanged()
 {
-    QString fullpathplaying = player->currentMedia().request().url().toString();
-    QString filename = QFileInfo(fullpathplaying).fileName();
+    //QString fullpathplaying = player->currentMedia().request().url().toString();
+    //QString filename = QFileInfo(fullpathplaying).fileName();
 
     QImage img = player->metaData(QMediaMetaData::CoverArtImage).value<QImage>();
     QImage imgscaled = img.scaled(270,270,Qt::IgnoreAspectRatio);
     if (!imgscaled.isNull()) {
         ui_->pushButtonBack->setIcon(QPixmap::fromImage(imgscaled));
     } else {
-        if (playlist->currentIndex() != -1 && fullpathplaying != "") {
-            QString filename = ui_->mp3List->item(playlist->currentIndex())->text();
-            QString cover = this->musicfolder + "/" + this->albumfolder + "/" + filename + ".png";
-            if (check_file_exist(cover.toStdString().c_str())) {
-                QPixmap img = cover;
-                ui_->pushButtonBack->setIcon(img.scaled(270,270,Qt::KeepAspectRatio));
-            } else {
+        if (playlist->currentIndex() != -1 /*&& fullpathplaying != ""*/) {
+            //QString filename = ui_->mp3List->item(playlist->currentIndex())->text();
+            //QString cover = this->musicfolder + "/" + this->albumfolder + "/" + filename + ".png";
+            //if (check_file_exist(cover.toStdString().c_str())) {
+            //    QPixmap img = cover;
+            //    ui_->pushButtonBack->setIcon(img.scaled(270,270,Qt::KeepAspectRatio));
+            //} else {
                 ui_->pushButtonBack->setIcon(QPixmap("://coverlogo.png"));
-            }
+            //}
         } else {
             ui_->pushButtonBack->setIcon(QPixmap("://coverlogo.png"));
         }
@@ -1284,7 +1284,7 @@ void f1x::openauto::autoapp::ui::MainWindow::metaDataChanged()
 
     try {
         // use metadata from mp3list widget (prescanned id3 by taglib)
-        if (playlist->currentIndex() != -1 && fullpathplaying != "") {
+        if (playlist->currentIndex() != -1 /*&& fullpathplaying != ""*/) {
             QString currentsong = ui_->mp3List->item(playlist->currentIndex())->text();
             ui_->labelCurrentPlaying->setText(currentsong);
             if (currentsong.length() > 48) {

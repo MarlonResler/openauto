@@ -308,6 +308,16 @@ void AndroidAutoEntity::sendPing()
     controlServiceChannel_->sendPingRequest(request, std::move(promise));
 }
 
+void AndroidAutoEntity::onVoiceSessionRequest(const aasdk::proto::messages::VoiceSessionRequest& request){
+    return;
+}
+
+void AndroidAutoEntity::onPingRequest(const aasdk::proto::messages::PingRequest& request){
+    return;
+}
+
+
+
 }
 }
 }

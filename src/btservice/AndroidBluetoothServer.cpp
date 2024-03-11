@@ -61,11 +61,11 @@ namespace f1x {
 //                    connect(socket, &QBluetoothSocket::disconnected, this,
 //                            QOverload<>::of(&ChatServer::clientDisconnected));
 
-                    f1x::aasdk::proto::messages::WifiInfoRequest request;
+                    /*f1x::aasdk::proto::messages::WifiInfoRequest request;
                     request.set_ip_address(getIP4_("wlan0"));
                     request.set_port(5000);
 
-                    sendMessage(request, 1);
+                    sendMessage(request, 1);*/
                 } else {
                     OPENAUTO_LOG(error) << "[AndroidBluetoothServer] received null socket during client connection.";
                 }
@@ -121,7 +121,7 @@ namespace f1x {
             }
 
             void AndroidBluetoothServer::handleWifiInfoRequest(QByteArray &buffer, uint16_t length) {
-                f1x::aasdk::proto::messages::WifiInfoRequest msg;
+                /*f1x::aasdk::proto::messages::WifiInfoRequest msg;
                 msg.ParseFromArray(buffer.data() + 4, length);
                 OPENAUTO_LOG(info) << "WifiInfoRequest: " << msg.DebugString();
 
@@ -130,11 +130,11 @@ namespace f1x {
                 response.set_port(5000);
                 response.set_status(aasdk::proto::messages::WifiInfoResponse_Status_STATUS_SUCCESS);
 
-                sendMessage(response, 7);
+                sendMessage(response, 7);*/
             }
 
             void AndroidBluetoothServer::handleWifiSecurityRequest(QByteArray &buffer, uint16_t length) {
-                f1x::aasdk::proto::messages::WifiSecurityReponse response;
+                /*f1x::aasdk::proto::messages::WifiSecurityReponse response;
 
                 response.set_ssid(configuration_->getParamFromFile("/etc/hostapd/hostapd.conf","ssid").toStdString());
                 response.set_bssid(QNetworkInterface::interfaceFromName("wlan0").hardwareAddress().toStdString());
@@ -142,7 +142,7 @@ namespace f1x {
                 response.set_security_mode(aasdk::proto::messages::WifiSecurityReponse_SecurityMode_WPA2_PERSONAL);
                 response.set_access_point_type(aasdk::proto::messages::WifiSecurityReponse_AccessPointType_STATIC);
 
-                sendMessage(response, 3);
+                sendMessage(response, 3);*/
             }
 
             void AndroidBluetoothServer::sendMessage(const google::protobuf::Message& message, uint16_t type) {
@@ -170,9 +170,9 @@ namespace f1x {
             }
 
             void AndroidBluetoothServer::handleWifiInfoRequestResponse(QByteArray &buffer, uint16_t length) {
-                f1x::aasdk::proto::messages::WifiInfoResponse msg;
+                /*f1x::aasdk::proto::messages::WifiInfoResponse msg;
                 msg.ParseFromArray(buffer.data() + 4, length);
-                OPENAUTO_LOG(info) << "WifiInfoResponse: " << msg.DebugString();
+                OPENAUTO_LOG(info) << "WifiInfoResponse: " << msg.DebugString();*/
             }
 
             const ::std::string AndroidBluetoothServer::getIP4_(const QString intf) {
